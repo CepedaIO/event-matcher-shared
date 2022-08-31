@@ -19,11 +19,14 @@
   "homepage": "https://github.com/CepedaIO/event-matcher-shared#readme",
   "devDependencies": {
     "@types/luxon": "^3.0.0",
+    "graphql": "^16.6.0",
+    "type-graphql": "^1.1.1",
     "typescript": "^4.7.4"
   },
   "dependencies": {
     "lodash.isnil": "^4.0.0",
     "lodash.omit": "^4.5.0",
+    "lodash.uniq": "^4.5.0",
     "luxon": "^3.0.1"
   }
 }
