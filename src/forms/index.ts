@@ -1,2 +1,2 @@
-export * from "./RangeForm";
+export * from "./RangeFormInput";
 export * from "./CreateEventForm";

@@ -1,12 +1,13 @@
-import {EventDuration, FormFactory, IAvailability} from "../types";
+import {EventDuration, FormFactory} from "../types";
 import {AvailabilityValidation, TextValidation} from "../validation";
+import {IAvailability} from "../models";
 
 export interface ICreateEventForm {
   name: string;
   description: string;
   duration: EventDuration
   displayName: string;
-  availability: IAvailability;
+  availabilities: IAvailability[];
 }
 
 export const CreatEventForm:FormFactory<ICreateEventForm> = () => ({
@@ -27,7 +28,7 @@ export const CreatEventForm:FormFactory<ICreateEventForm> = () => ({
       [TextValidation.defined, 'Must provide a display name'],
       [TextValidation.greaterThan(3), 'Must be greater than 3 characters']
     ],
-    availability: ({ duration }) => [
+    availabilities: ({ duration }) => [
       [(value) => value.length > 0, 'Must select availability'],
       [(value) => AvailabilityValidation.durationInvalidIndexes(value, duration).length === 0, 'Invalid availabilities']
     ]

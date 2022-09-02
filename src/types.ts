@@ -1,5 +1,4 @@
 import {DateTime, DurationLikeObject} from "luxon";
-import {IRangeForm} from "./forms";
 
 export type PickByType<T, V> = { [K in keyof T as T[K] extends V ? K : never]: T[K] };
 export type Keyed<T = any> = { [key:string | number]: T };
@@ -28,18 +27,23 @@ export interface ValidateOptions {
   stopOnFirstFail?: boolean
 }
 
-export type IAvailabilityForm = IRangeForm;
-export type IAvailability = Array<IAvailabilityForm>;
-
-export interface IAvailabilityUtils<AvailabilityType extends IAvailabilityForm> {
-  applies: (form: IAvailabilityForm) => form is AvailabilityType;
-  durationValid: (form: AvailabilityType, durLike: DurationLikeObject) => boolean;
-  dateValid: (form: AvailabilityType, date: DateTime) => boolean;
-}
-
 export interface Form<Values extends Keyed> {
   validation: ValidatorDict<Values>
 }
 
 export type FormFactory<Values extends Keyed, FactoryProps extends Keyed = {}> = (props:FactoryProps) => Form<Values>
 export type EventDuration = Pick<DurationLikeObject, 'minutes' | 'hours' | 'days'>
+
+export type Demote<Type> = {
+  [Field in keyof Type]: Type[Field] extends DateTime ? Date :
+                         Type[Field] extends Object ? Demote<Type[Field]> : Type[Field]
+}
+
+export type AsEntity<Type> = Demote<Type> & {
+  id: number;
+  createdOn: Date;
+}
+
+export type AsMut<Type> = AsEntity<Type> & {
+  modifiedOn: Date;
+}
