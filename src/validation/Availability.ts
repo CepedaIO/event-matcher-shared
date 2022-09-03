@@ -1,7 +1,7 @@
 import {Tuple} from "../types";
 import {DateTime, DurationLikeObject} from "luxon";
 import {RangeUtils} from "../forms";
-import {IAvailability} from "../models";
+import {IAvailability} from "../entities";
 
 export const helpers = [RangeUtils];
 const helperFor = (form: IAvailability) => helpers.find((helper) => helper.applies(form))!

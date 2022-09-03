@@ -1,20 +1,25 @@
-import {EventDuration, FormFactory} from "../types";
+import {IDuration, FormFactory} from "../types";
 import {AvailabilityValidation, TextValidation} from "../validation";
-import {IAvailability} from "../models";
+import {IAvailability} from "../entities";
 
-export interface ICreateEventForm {
+export interface ICreateEventInput {
   name: string;
+  img: string;
   description: string;
-  duration: EventDuration
+  duration: IDuration;
   displayName: string;
-  availabilities: IAvailability[];
+  availabilities: IAvailability[]
 }
 
-export const CreatEventForm:FormFactory<ICreateEventForm> = () => ({
+export const CreatEventForm:FormFactory<ICreateEventInput> = () => ({
   validation: {
     name: () => [
       [TextValidation.defined, 'Must provide event name'],
       [TextValidation.greaterThan(3), 'Must be greater than 3 characters']
+    ],
+    img: () => [
+      [TextValidation.defined, 'Must provide an image'],
+      [TextValidation.isURL, 'Must be a URL']
     ],
     description:  () => [
       [TextValidation.defined, 'Must provide a description'],

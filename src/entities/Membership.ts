@@ -1,4 +1,5 @@
 import {IAvailability} from "./Availability";
+import {AsMut} from "../types";
 
 export interface IMembership {
   email: string;
@@ -8,9 +9,8 @@ export interface IMembership {
 }
 
 export interface IMembershipPermissions {
-  isOwner: boolean;
-  canEdit: boolean;
-  canKick: boolean;
-  canBan: boolean;
-  canMute: boolean;
+  isAdmin: boolean;
 }
+
+export type IMembershipEntity = AsMut<IMembership>;
+export type IMembershipPermissionsEntity = AsMut<IMembershipPermissions>;

@@ -1,10 +1,10 @@
-import {DateTime, DurationLikeObject} from "luxon";
+import {DateTime, DurationLikeObject, DurationObjectUnits} from "luxon";
 
 export type PickByType<T, V> = { [K in keyof T as T[K] extends V ? K : never]: T[K] };
 export type Keyed<T = any> = { [key:string | number]: T };
 export type StringKey<T, V = any> = keyof PickByType<T, V> & string;
 export type Tuple<T, K = T> = [T, K];
-export type ValidatorDict<Values extends Keyed> = {[Field in StringKey<Values>]: Validator<Values, Field>};
+export type ValidatorDict<Values extends Keyed> = {[Field in StringKey<Values>]?: Validator<Values, Field>};
 export type Validator<Values extends Keyed, Field extends StringKey<Values>> =
   (values: Values, ctx: {
     field: Field,
@@ -39,7 +39,7 @@ export type Demote<Type> = {
                          Type[Field] extends Object ? Demote<Type[Field]> : Type[Field]
 }
 
-export type AsEntity<Type> = Demote<Type> & {
+export type AsEntity<Type> = Type & {
   id: number;
   createdOn: Date;
 }
@@ -47,3 +47,5 @@ export type AsEntity<Type> = Demote<Type> & {
 export type AsMut<Type> = AsEntity<Type> & {
   modifiedOn: Date;
 }
+
+export type IDuration = Pick<DurationObjectUnits, 'days' | 'hours' | 'minutes'>;

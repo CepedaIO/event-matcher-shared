@@ -2,7 +2,7 @@ import {DateTime, Duration, DurationLikeObject, Interval} from "luxon";
 import {ist} from "../utils";
 import {FormFactory} from "../types";
 import {DateTimeValidation} from "../validation";
-import {IAvailabilityUtils} from "../models";
+import {IAvailabilityUtils} from "../entities";
 
 export interface IRangeForm {
   start: DateTime;
