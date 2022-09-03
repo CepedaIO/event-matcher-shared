@@ -33,9 +33,9 @@ export interface Form<Values extends Keyed> {
 
 export type FormFactory<Values extends Keyed, FactoryProps extends Keyed = {}> = (props:FactoryProps) => Form<Values>
 export type EventDuration = Pick<DurationLikeObject, 'minutes' | 'hours' | 'days'>
-
+export type ISO = string;
 export type Demote<Type> = {
-  [Field in keyof Type]: Type[Field] extends DateTime ? Date :
+  [Field in keyof Type]: Type[Field] extends DateTime ? ISO :
                          Type[Field] extends Object ? Demote<Type[Field]> : Type[Field]
 }
 
