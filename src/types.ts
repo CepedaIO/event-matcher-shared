@@ -49,3 +49,8 @@ export type AsMut<Type> = AsEntity<Type> & {
 }
 
 export type IDuration = Pick<DurationObjectUnits, 'days' | 'hours' | 'minutes'>;
+
+export interface ISimpleResponse {
+  success: boolean;
+  result: string;
+}
