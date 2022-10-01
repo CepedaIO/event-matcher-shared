@@ -9,3 +9,4 @@ export const TextValidation = {
     catch(e) { return false; }
   }
 }
+
