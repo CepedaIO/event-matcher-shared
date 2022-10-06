@@ -1,12 +1,12 @@
 import {IRangeForm} from "../forms";
 import {DateTime, DurationLikeObject} from "luxon";
 import {AsMut, Demote} from "../types";
-import {availabilityHelperFor, AvailabilityHelpers} from "../validation";
+import {availabilityHelperFor} from "../validation";
 
-export type IAvailability = IRangeForm;
-export type IAvailabilityEntity = AsMut<IAvailability>;
+export type IAvailabilityBase = IRangeForm;
+export type IAvailabilityEntity = AsMut<IAvailabilityBase>;
 
-export interface IAvailabilityUtils<AvailabilityType extends IAvailability> {
+export interface IAvailabilityUtils<AvailabilityType extends IAvailabilityBase> {
   applies: (form: any) => form is AvailabilityType;
   appliesDemoted: (form: any) => form is Demote<AvailabilityType>;
   durationValid: (form: AvailabilityType, durLike: DurationLikeObject) => boolean;
@@ -15,5 +15,5 @@ export interface IAvailabilityUtils<AvailabilityType extends IAvailability> {
 }
 
 export const Availability = {
-  promote: (availabilities: Demote<IAvailability>[]) => availabilities.map((form) => availabilityHelperFor(form).promote(form))
+  promote: (availabilities: Demote<IAvailabilityBase>[]) => availabilities.map((form) => availabilityHelperFor(form).promote(form))
 }

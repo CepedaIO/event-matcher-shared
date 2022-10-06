@@ -42,11 +42,11 @@ export type Demote<Type> = {
 
 export type AsEntity<Type> = Type & {
   id: number;
-  createdOn: Date;
+  createdOn: DateTime;
 }
 
 export type AsMut<Type> = AsEntity<Type> & {
-  modifiedOn: Date;
+  modifiedOn: DateTime;
 }
 
 export type IDuration = Pick<DurationObjectUnits, 'days' | 'hours' | 'minutes'>;

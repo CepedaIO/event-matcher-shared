@@ -1,16 +1,16 @@
-import {IAvailability} from "./Availability";
+import {IAvailabilityBase} from "./Availability";
 import {AsMut} from "../types";
 
-export interface IMembership {
+export interface IMembershipBase {
   email: string;
   displayName: string;
-  permissions: IMembershipPermissions;
-  availabilities: IAvailability[];
+  permissions: IMembershipPermissionsBase;
+  availabilities: IAvailabilityBase[];
 }
 
-export interface IMembershipPermissions {
+export interface IMembershipPermissionsBase {
   isAdmin: boolean;
 }
 
-export type IMembershipEntity = AsMut<IMembership>;
-export type IMembershipPermissionsEntity = AsMut<IMembershipPermissions>;
+export type IMembershipEntity = AsMut<IMembershipBase>;
+export type IMembershipPermissionsEntity = AsMut<IMembershipPermissionsBase>;
