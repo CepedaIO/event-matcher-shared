@@ -1,11 +1,8 @@
-import {IAvailabilityBase} from "./Availability";
 import {AsMut} from "../types";
 
 export interface IMembershipBase {
   email: string;
   displayName: string;
-  permissions: IMembershipPermissionsBase;
-  availabilities: IAvailabilityBase[];
 }
 
 export interface IMembershipPermissionsBase {

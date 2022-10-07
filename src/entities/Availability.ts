@@ -15,5 +15,5 @@ export interface IAvailabilityUtils<AvailabilityType extends IAvailabilityBase> 
 }
 
 export const Availability = {
-  promote: (availabilities: Demote<IAvailabilityBase>[]) => availabilities.map((form) => availabilityHelperFor(form).promote(form))
+  promote: (availabilities: Demote<IAvailabilityEntity>[]) => availabilities.map((form) => availabilityHelperFor(form).promote(form))
 }

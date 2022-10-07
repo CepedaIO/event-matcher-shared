@@ -1,6 +1,6 @@
 import {IDuration, FormFactory} from "../types";
 import {AvailabilityValidation, TextValidation} from "../validation";
-import {IAvailabilityBase} from "../entities";
+import {IAvailabilityEntity} from "../entities";
 
 export interface ICreateEventInput {
   name: string;
@@ -8,7 +8,7 @@ export interface ICreateEventInput {
   description: string;
   duration: IDuration;
   displayName: string;
-  availabilities: IAvailabilityBase[]
+  availabilities: IAvailabilityEntity[]
 }
 
 export const CreatEventForm:FormFactory<ICreateEventInput> = () => ({
