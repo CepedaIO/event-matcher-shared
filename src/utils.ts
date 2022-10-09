@@ -4,8 +4,13 @@ import {DateTime} from "luxon";
 export const ist = <T>(test: (obj:any) => boolean) => (obj:any): obj is T => test(obj);
 
 const dateFields = ['createdOn', 'modifiedOn', 'expiresOn', 'start', 'end'];
-export const promote = <T>(entity: Demote<T> | T): T => {
-  const result:any = {};
+export const promote = <T>(entity: Demote<T>): T => {
+  const result:any = Array.isArray(entity) ? [] : {};
+  
+  if(!entity) {
+    return entity;
+  }
+  
   for(const [key, val] of Object.entries(entity)) {
     if(Array.isArray(val)) {
       result[key] = val.map((v) => promote(v));

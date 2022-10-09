@@ -11,9 +11,8 @@ export interface IAvailabilityUtils<AvailabilityType extends IAvailabilityBase> 
   appliesDemoted: (form: any) => form is Demote<AvailabilityType>;
   durationValid: (form: AvailabilityType, durLike: DurationLikeObject) => boolean;
   dateValid: (form: AvailabilityType, date: DateTime) => boolean;
-  promote: (form: Demote<AvailabilityType>) => AvailabilityType;
 }
 
 export const Availability = {
-  promote: (availabilities: Demote<IAvailabilityEntity>[]) => availabilities.map((form) => availabilityHelperFor(form).promote(form))
+
 }

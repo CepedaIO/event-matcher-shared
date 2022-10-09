@@ -12,10 +12,6 @@ export interface IRangeForm {
 export const RangeUtils: IAvailabilityUtils<IRangeForm> = {
   applies: ist<IRangeForm>((obj) => DateTime.isDateTime(obj.start) && DateTime.isDateTime(obj.end)),
   appliesDemoted: ist<Demote<IRangeForm>>((obj) => typeof obj.start === 'string' && typeof obj.end === 'string'),
-  promote: (range: Demote<IRangeForm>) => ({
-    start: DateTime.fromISO(range.start),
-    end: DateTime.fromISO(range.end)
-  }),
   durationValid: (range: IRangeForm, durLike: DurationLikeObject) =>
     DateTimeValidation.greaterThan(range.start, Duration.fromDurationLike(durLike))(range.end),
   dateValid: (range: IRangeForm, date: DateTime) =>
