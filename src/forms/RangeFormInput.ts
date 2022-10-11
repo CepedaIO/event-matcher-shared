@@ -15,7 +15,12 @@ export const RangeUtils: IAvailabilityUtils<IRangeForm> = {
   durationValid: (range: IRangeForm, durLike: DurationLikeObject) =>
     DateTimeValidation.greaterThan(range.start, Duration.fromDurationLike(durLike))(range.end),
   dateValid: (range: IRangeForm, date: DateTime) =>
-    Interval.fromDateTimes(range.start.startOf('day'), range.end.endOf('day')).contains(date)
+    Interval.fromDateTimes(range.start.startOf('day'), range.end.endOf('day')).contains(date),
+  intersection: (scopes: Interval[], form: IRangeForm) =>
+    scopes.reduce((intervals, scope) => {
+      const interval = scope.intersection(Interval.fromDateTimes(form.start, form.end))
+      return interval ? intervals.concat(interval) : intervals;
+    }, [] as Interval[])
 }
 
 interface RangeFormProps {
@@ -33,7 +38,7 @@ export const RangeFormFactory:FormFactory<IRangeForm, RangeFormProps> = ({ durat
     end: ({ start }, { required }) => [
       [DateTimeValidation.defined, 'Must pick a time'],
       required('start', [
-        [DateTimeValidation.greaterThan(start, duration), `Must be at least ${duration.toHuman()} before start`]
+        [DateTimeValidation.greaterThan(start, duration), `Must be at least ${duration.toHuman()} after start`]
       ])
     ]
   }

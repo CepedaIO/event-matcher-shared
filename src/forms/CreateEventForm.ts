@@ -8,7 +8,8 @@ export interface ICreateEventInput {
   description: string;
   duration: IDuration;
   displayName: string;
-  availabilities: IAvailabilityBase[]
+  availabilities: IAvailabilityBase[];
+  eventAvailabilities: IAvailabilityBase[];
 }
 
 export const CreatEventForm:FormFactory<ICreateEventInput> = () => ({
