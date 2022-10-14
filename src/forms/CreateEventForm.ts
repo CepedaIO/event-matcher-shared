@@ -9,6 +9,7 @@ export interface ICreateEventInput {
   duration: IDuration;
   displayName: string;
   availabilities: IAvailabilityBase[];
+  anytime: boolean;
   eventAvailabilities: IAvailabilityBase[];
 }
 
