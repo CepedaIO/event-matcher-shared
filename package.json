@@ -1,5 +1,5 @@
 {
-  "name": "event-matcher-shared",
+  "name": "squad-shared",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CepedaIO/event-matcher-shared.git"
+    "url": "git+https://github.com/CepedaIO/squad-shared.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/CepedaIO/event-matcher-shared/issues"
+    "url": "https://github.com/CepedaIO/squad-shared/issues"
   },
-  "homepage": "https://github.com/CepedaIO/event-matcher-shared#readme",
+  "homepage": "https://github.com/CepedaIO/squad-shared#readme",
   "devDependencies": {
     "@types/luxon": "^3.0.0",
     "nodemon": "^2.0.19",
